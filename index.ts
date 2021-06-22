@@ -32,28 +32,8 @@ let key = crypto.randomBytes(32);
 
 
 
-/**
- * @event        Receiver End
- * @description  Decrypt file and checksum
- */
-const decryptFileAndChecksum = (encryptedBuffer, publicKey) => {
-  const iv = encryptedBuffer.slice(0, 256);
-  encryptedBuffer = encryptedBuffer.slice(256);
-  const decryptedChecksum = crypto.publicDecrypt(publicKey, iv).toString();
 
-  const decipher = crypto.createDecipheriv("aes-256-gcm", key, iv);
-  const decryptedBuffer = decipher.update(encryptedBuffer);
 
-  return { decryptedChecksum, decryptedBuffer };
-};
-
-const verifyChecksumAndFile = (receivedFile, decryptedChecksum) => {
-  const checksum = generateChecksum(receivedFile);
-  if (checksum != decryptedChecksum) {
-    return false;
-  }
-  return true;
-};
 
 const main = async () => {
   const fileBuffer = await fetchFile();

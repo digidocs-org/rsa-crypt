@@ -1,4 +1,5 @@
 import crypto from "crypto";
+import decryptChecksum from "./decryptChecksum";
 
 /**
  * @event        Receiver End
@@ -10,7 +11,7 @@ const decryptFileAndChecksum = (
 ) => {
   const iv = encryptedBuffer.slice(0, 256);
   encryptedBuffer = encryptedBuffer.slice(256);
-  const decryptedChecksum = crypto.publicDecrypt(publicKey, iv).toString();
+  const decryptedChecksum = decryptChecksum(publicKey, iv);
 
   const decipher = crypto.createDecipheriv("aes-256-gcm", key, iv);
   const decryptedBuffer = decipher.update(encryptedBuffer);
