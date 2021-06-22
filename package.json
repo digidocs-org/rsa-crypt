@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "build": "tsc",
-    "release": "npm version && npm publish"
+    "release": "npm version patch && npm publish"
   },
   "license": "MIT",
   "repository": {
