@@ -7,8 +7,7 @@
     "/build"
   ],
   "scripts": {
-    "build": "tsc",
-    "prepare:release": "npm version patch && yarn build"
+    "build": "tsc"
   },
   "license": "MIT",
   "publishConfig": {
