@@ -25,7 +25,7 @@ jobs:
       - name: Build the project
         run: yarn build
       - name: Release
-        run: yarn release
+        run: npx semantic-release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
