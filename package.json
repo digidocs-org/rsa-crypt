@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "build": "tsc",
-    "release": "npx semantic-release"
+    "release": "yarn publish"
   },
   "license": "MIT",
   "publishConfig": {
