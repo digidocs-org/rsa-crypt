@@ -7,7 +7,8 @@ import decryptChecksum from "./decryptChecksum";
  */
 const decryptFileAndChecksum = (
   encryptedBuffer: Buffer,
-  publicKey: crypto.RsaPublicKey | crypto.KeyLike
+  publicKey: crypto.RsaPublicKey | crypto.KeyLike,
+  key: crypto.CipherKey
 ) => {
   const iv = encryptedBuffer.slice(0, 256);
   encryptedBuffer = encryptedBuffer.slice(256);

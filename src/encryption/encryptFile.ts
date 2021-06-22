@@ -12,11 +12,7 @@ const encryptFile = (
   const iv = encryptedChecksum;
 
   const cipher = crypto.createCipheriv("aes-256-gcm", key, iv);
-  const encryptedBuffer = Buffer.concat([
-    iv,
-    cipher.update(fileBuffer),
-    Buffer.from("naman singh"),
-  ]);
+  const encryptedBuffer = Buffer.concat([iv, cipher.update(fileBuffer)]);
 
   return encryptedBuffer;
 };
