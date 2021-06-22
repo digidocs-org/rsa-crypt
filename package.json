@@ -1,9 +1,12 @@
 {
-  "name": "rsa-arch",
+  "name": "@digidocs/rsa-arch",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@digidocs-org"
+  },
   "dependencies": {
-    "node-fetch": "^2.6.1"
+    "@types/node": "^15.12.4"
   }
 }

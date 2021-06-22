@@ -1,24 +1,17 @@
 //https://obj.digidocs.one/06dbacf3-c79e-46de-9950-6507ba4e8092.pdf
 const crypto = require("crypto");
-const fetch = require("node-fetch");
 
 const fetchFile = (
   url = "https://obj.digidocs.one/06dbacf3-c79e-46de-9950-6507ba4e8092.pdf"
 ) => fetch(url).then((res) => res.buffer());
 
-const generateRSAkeys = () => {
-  const { publicKey, privateKey } = crypto.generateKeyPairSync("rsa", {
-    modulusLength: 2048,
-  });
-  return { publicKey, privateKey };
-};
 
 let key = crypto.randomBytes(32);
 
-const signFile = (privateKey, file) => {
-  const signature = crypto.sign("sha256", Buffer.from(file), privateKey);
-  return signature.length;
-};
+// const signFile = (privateKey, file) => {
+//   const signature = crypto.sign("sha256", Buffer.from(file), privateKey);
+//   return signature.length;
+// };
 
 // const verifySign = async (signature, publicKey, file) => {
 //   const isVerified = crypto.verify(
@@ -33,36 +26,11 @@ const signFile = (privateKey, file) => {
 //   return isVerified;
 // };
 
-const generateChecksum = (file) =>
-  crypto.createHash("sha256").update(Buffer.from(file)).digest("base64");
 
-/**
- * @event        Sender End
- * @description  Generate checksum and encrypt using private key
- */
-const generateAndEncryptChecksum = (file, privateKey) => {
-  const checksum = generateChecksum(file);
 
-  const encryptedChecksum = crypto.privateEncrypt(
-    privateKey,
-    Buffer.from(checksum)
-  );
-  return encryptedChecksum;
-};
 
-/**
- * @event        Sender End
- * @description  Encrypt file using AES-256 and concat encrypted checksum
- */
-const encryptFile = (fileBuffer, encryptedChecksum) => {
-  const iv = encryptedChecksum;
 
-  const cipher = crypto.createCipheriv("aes-256-gcm", key, iv);
-  const encryptedBuffer = Buffer.concat([iv, cipher.update(fileBuffer)]);
 
-  //Store this buffer along with public key in AWS S3
-  return encryptedBuffer;
-};
 
 /**
  * @event        Receiver End
