@@ -1,5 +1,5 @@
 {
-  "name": "rsa-arch",
+  "name": "@digidocs-org/rsa-arch",
   "version": "1.0.2",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
