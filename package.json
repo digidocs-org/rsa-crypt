@@ -1,6 +1,6 @@
 {
   "name": "@digidocs/rsa-arch",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "files": [
@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "build": "tsc",
-    "release": "yarn publish"
+    "release": "npm version patch && yarn build && npm publish"
   },
   "license": "MIT",
   "publishConfig": {
