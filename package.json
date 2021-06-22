@@ -1,5 +1,5 @@
 {
-  "name": "@digidocs-org/rsa-arch",
+  "name": "@digidocs-org/rsa-crypt",
   "version": "1.0.2",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
@@ -11,8 +11,9 @@
     "release": "npm version patch && npm publish"
   },
   "license": "MIT",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/@digidocs-org"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/digidocs-org/rsa-crypt.git"
   },
   "devDependencies": {
     "@types/node": "^15.12.4",
