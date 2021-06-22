@@ -1,13 +1,14 @@
 {
   "name": "@digidocs/rsa-arch",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "files": [
     "/build"
   ],
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "release" : "npm version patch && npm publish --no-git-tag-version"
   },
   "license": "MIT",
   "publishConfig": {
