@@ -1,21 +1,26 @@
-name: Node.js Package
-
+name: Release
 on:
   push:
     branches:
       - master
-
 jobs:
-  publish-gpr:
+  release:
+    name: Release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: "13.x"
           registry-url: https://npm.pkg.github.com/
-          scope: '@digidocs-org'
-      - run: npm install
-      - run: npm publish
+          scope: "@digidocs-org"
+      - name: Install dependencies
+        run: yarn --pure-lockfile
+      - name: Build the project
+        run: yarn build
+      - name: Release
         env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release

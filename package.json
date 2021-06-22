@@ -1,12 +1,21 @@
 {
   "name": "@digidocs/rsa-arch",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "files": [
+    "/build"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "release": "npx semantic-release"
+  },
   "license": "MIT",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@digidocs-org"
   },
-  "dependencies": {
-    "@types/node": "^15.12.4"
+  "devDependencies": {
+    "@types/node": "^15.12.4",
+    "typescript": "^4.3.4"
   }
 }
