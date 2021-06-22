@@ -5,7 +5,7 @@ import crypto from "crypto";
  * @description  Encrypt checksum using private key
  */
 const encryptFile = (
-  checksum: Buffer,
+  checksum: Buffer | string,
   privateKey: crypto.RsaPrivateKey | crypto.KeyLike
 ) => {
   const encryptedChecksum = crypto.privateEncrypt(
