@@ -2,7 +2,6 @@ import pem from "pem";
 import util from 'util'
 import { SignedXml } from 'xml-crypto'
 import { xml2json, json2xml } from './xmlParser'
-import fs from 'fs'
 
 interface ISignedParam {
     pfxFile: Buffer
@@ -13,7 +12,7 @@ interface ISignedParam {
 const createSignedXMLCallback = async (data: ISignedParam, callback: Function) => {
     const { pfxFile, password, xml } = data
     pem.readPkcs12(pfxFile, { p12Password: password }, (err, data) => {
-        if (err) throw err
+        if (err) return callback(err, null)
         const certificate = data.cert
         const X509Certificate = certificate.substring(certificate.indexOf("\n") + 1, certificate.lastIndexOf("\n") + 1).replace(/\n/g, '');
 
@@ -30,7 +29,7 @@ const createSignedXMLCallback = async (data: ISignedParam, callback: Function) =
         jsonFile.Esign.Docs._attributes = {}
         jsonFile.Esign.Signature.SignedInfo.Reference._attributes.URI = ""
         let xmlFile = json2xml(jsonFile)
-        return callback(xmlFile)
+        return callback(null, xmlFile)
     })
 }
 
