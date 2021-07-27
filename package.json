@@ -1,6 +1,6 @@
 {
   "name": "@digidocs-org/rsa-crypt",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "files": [
@@ -18,5 +18,12 @@
   "devDependencies": {
     "@types/node": "^15.12.4",
     "typescript": "^4.3.4"
+  },
+  "dependencies": {
+    "@types/pem": "^1.9.6",
+    "@types/xml-crypto": "^1.4.2",
+    "pem": "^1.14.4",
+    "xml-crypto": "^1.5.4",
+    "xml-js": "^1.6.11"
   }
 }

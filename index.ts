@@ -16,3 +16,9 @@ export { default as encryptFile } from "./src/encryption/encryptFile";
  */
 export { default as decryptChecksum } from "./src/decryption/decryptChecksum";
 export { default as decryptFile } from "./src/decryption/decryptFile";
+
+/**
+ * @description esign util exports
+ */
+export { default as createSignedXML } from "./src/esignRequest/createRequest";
+export { xml2json, json2xml } from "./src/esignRequest/xmlParser";
