@@ -9,6 +9,10 @@ interface ISignedParam {
     xml: string
 }
 
+const splitString = (str: string, length: number) => {
+    return str.match(new RegExp('.{1,' + length + '}', 'g'));
+}
+
 const createSignedXMLCallback = async (data: ISignedParam, callback: Function) => {
     const { pfxFile, password, xml } = data
     pem.readPkcs12(pfxFile, { p12Password: password }, (err, data) => {
@@ -25,8 +29,11 @@ const createSignedXMLCallback = async (data: ISignedParam, callback: Function) =
         sig.signingKey = Buffer.from(data.key)
         sig.canonicalizationAlgorithm = "http://www.w3.org/TR/2001/REC-xml-c14n-20010315"
         sig.computeSignature(xml)
-        let xmlFile = sig.getSignedXml()
-        return callback(null, xmlFile)
+        const jsonData = JSON.parse(xml2json(sig.getSignedXml()))
+        const updatedSignedValue = splitString(jsonData.Esign.Signature.SignatureValue._text, 76)?.join(" ")
+        jsonData.Esign.Signature.SignatureValue._text = updatedSignedValue
+        let xmlData = json2xml(jsonData)
+        return callback(null, xmlData)
     })
 }
 
