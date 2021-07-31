@@ -1,7 +1,6 @@
 import pem from "pem";
 import util from 'util'
 import { SignedXml } from 'xml-crypto'
-import { xml2json, json2xml } from './xmlParser'
 
 interface ISignedParam {
     pfxFile: Buffer
