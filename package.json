@@ -1,6 +1,6 @@
 {
   "name": "@digidocs-org/rsa-crypt",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "files": [
