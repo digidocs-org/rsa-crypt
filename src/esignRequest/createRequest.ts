@@ -23,6 +23,7 @@ const createSignedXMLCallback = async (data: ISignedParam, callback: Function) =
             getKeyInfo: () => `<X509Data><X509SubjectName>1.2.840.113549.1.9.1=#16166e616d616e2e69636562656440676d61696c2e636f6d,CN=Digidocs Technologies,OU=ENGINEERING,O=DIGIDOCS TECHNOLOGIES PRIVATE LIMITED,L=PALAM,ST=DELHI,C=IN</X509SubjectName><X509Certificate>${X509Certificate}</X509Certificate></X509Data>`,
         }
         sig.signingKey = Buffer.from(data.key)
+        sig.canonicalizationAlgorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"
         sig.computeSignature(xml)
         let jsonFile = JSON.parse(xml2json(sig.getSignedXml()))
         jsonFile.Esign.Docs._attributes = {}
