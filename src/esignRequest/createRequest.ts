@@ -20,12 +20,11 @@ const createSignedXMLCallback = async (data: ISignedParam, callback: Function) =
         sig.addReference("//*[local-name(.)='Docs']", ["http://www.w3.org/2000/09/xmldsig#enveloped-signature"])
         //@ts-ignore
         sig.keyInfoProvider = {
-            getKeyInfo: () => `<X509Data><X509SubjectName/><X509Certificate>${X509Certificate}</X509Certificate></X509Data>`,
+            getKeyInfo: () => `<X509Data><X509SubjectName>1.2.840.113549.1.9.1=#16166e616d616e2e69636562656440676d61696c2e636f6d,CN=Digidocs Technologies,OU=ENGINEERING,O=DIGIDOCS TECHNOLOGIES PRIVATE LIMITED,L=PALAM,ST=DELHI,C=IN</X509SubjectName><X509Certificate>${X509Certificate}</X509Certificate></X509Data>`,
         }
         sig.signingKey = Buffer.from(data.key)
         sig.computeSignature(xml)
         let jsonFile = JSON.parse(xml2json(sig.getSignedXml()))
-        jsonFile._declaration._attributes.encoding = "UTF-8"
         jsonFile.Esign.Docs._attributes = {}
         jsonFile.Esign.Signature.SignedInfo.Reference._attributes.URI = ""
         let xmlFile = json2xml(jsonFile)
