@@ -18,7 +18,8 @@ const createSignedXMLCallback = async (data: ISignedParam, callback: Function) =
     pem.readPkcs12(pfxFile, { p12Password: password }, (err, data) => {
         if (err) return callback(err, null)
         const certificate = data.cert
-        const X509Certificate = certificate.substring(certificate.indexOf("\n") + 1, certificate.lastIndexOf("\n") + 1).replace(/\n/g, ' ');
+        const updatedCerti = certificate.substring(certificate.indexOf("\n") + 1, certificate.lastIndexOf("\n") + 1).replace(/\n/g, '');
+        const X509Certificate = splitString(updatedCerti, 76)?.join(" ")
 
         var sig = new SignedXml()
         sig.addReference("//*[local-name(.)='Esign']", ["http://www.w3.org/2000/09/xmldsig#enveloped-signature"], "http://www.w3.org/2000/09/xmldsig#sha1", "", "", "", true)
