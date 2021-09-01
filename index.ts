@@ -21,4 +21,5 @@ export { default as decryptFile } from "./src/decryption/decryptFile";
  * @description esign util exports
  */
 export { default as createSignedXML } from "./src/esignRequest/createRequest";
+export { generateXMLToSign } from './src/esignRequest/generateSignedXml'
 export { xml2json, json2xml } from "./src/esignRequest/xmlParser";
