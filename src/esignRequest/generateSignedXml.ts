@@ -15,12 +15,13 @@ const generateSign = (data: ISignedParam, callback: Function) => {
         const privateKey = data.key
         const publicKey = data.cert
 
+        const X509Certificate = publicKey.substring(publicKey.indexOf("\n") + 1, publicKey.lastIndexOf("\n") + 1).replace(/\n/g, '');
         const sign = crypto.sign("SHA256", fileBuffer, privateKey)
         const signature = sign.toString("base64")
 
         const xmlToSign = `<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>` +
             `<EsignResp errCode=\"NA\" errMsg=\"NA\" resCode=\"44B62B382E8345C2BE731ADBDDC5191B\" status=\"1\" ts=\"2021-08-01T00:30:01\" txn=\"asdfad89asfhe3\">` +
-            `<UserX509Certificate>${publicKey}</UserX509Certificate>` +
+            `<UserX509Certificate>${X509Certificate}</UserX509Certificate>` +
             `<Signatures>` +
             `<DocSignature error="" id = "1" sigHashAlgorithm = "SHA256" >${signature}< /DocSignature>` +
             `</Signatures>`
