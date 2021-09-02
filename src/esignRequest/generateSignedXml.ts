@@ -23,8 +23,9 @@ const generateSign = (data: ISignedParam, callback: Function) => {
             `<EsignResp errCode=\"NA\" errMsg=\"NA\" resCode=\"44B62B382E8345C2BE731ADBDDC5191B\" status=\"1\" ts=\"2021-08-01T00:30:01\" txn=\"asdfad89asfhe3\">` +
             `<UserX509Certificate>${X509Certificate}</UserX509Certificate>` +
             `<Signatures>` +
-            `<DocSignature error="" id = "1" sigHashAlgorithm = "SHA256" >${signature}< /DocSignature>` +
-            `</Signatures>`
+            `<DocSignature error="" id = "1" sigHashAlgorithm = "SHA256" >${signature}</DocSignature>` +
+            `</Signatures>` + 
+            `</EsignResp>`
         return callback(null, xmlToSign)
     })
 }
